@@ -1,0 +1,18 @@
+{
+ "version": 1,
+ "source": "CDS HiPS, Norder3/Allsky",
+ "files": {
+  "iras": "iras.jpg",
+  "wise": "wise.jpg",
+  "twomass": "twomass.jpg",
+  "integral": "integral.jpg",
+  "fermi": "fermi.jpg"
+ },
+ "credits": {
+  "iras": "IRIS (IRAS reprocessed): Miville-Deschenes & Lagache 2005, NASA/IPAC; HEALPix by CDS",
+  "wise": "AllWISE: NASA/JPL-Caltech/UCLA; HEALPix and colors by CDS",
+  "twomass": "2MASS: UMass and IPAC/Caltech, NASA, NSF; HEALPix and colors by CDS",
+  "integral": "INTEGRAL: ESA (ESAC); served by CDS",
+  "fermi": "Fermi LAT: NASA/DOE/Fermi LAT Collaboration; HEALPix and colors by CDS"
+ }
+}

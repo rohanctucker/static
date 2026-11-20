@@ -1,0 +1,5 @@
+# Only needed to re-render the sky maps (the site already ships with them).
+numpy>=1.22
+healpy>=1.16      # not available on Windows: use Google Colab, macOS or Linux
+pillow>=9.0
+astropy>=5.0      # only for the optional hydrogen map

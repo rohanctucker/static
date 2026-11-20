@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Static: tune the real sky</title>
+  <meta name="description" content="A portable radio for the real sky, from radio waves to gamma rays, and a shelf of tapes recorded on Mars, near Jupiter and at a launch pad.">
+  <meta name="theme-color" content="#070b16">
+  <meta property="og:title" content="Static: tune the real sky">
+  <meta property="og:description" content="Tune the real sky from radio waves to gamma rays, or play the first sounds ever recorded on Mars.">
+  <meta property="og:type" content="website">
+  <!-- After you deploy, make this the full address, e.g. https://YOUR-NAME.github.io/static/assets/og.jpg -->
+  <meta property="og:image" content="assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/anybody.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="data/manifest.json" as="fetch" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#dial">Skip to the dial</a>
+
+  <header class="topbar">
+    <span class="wordmark" aria-label="Static">Static</span>
+    <nav class="topnav" aria-label="Settings">
+      <div class="sound">
+        <button class="textbtn" id="soundBtn" type="button" aria-pressed="false" disabled>Sound off</button>
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="Volume" disabled>
+      </div>
+      <button class="textbtn" id="aboutBtn" type="button" aria-haspopup="dialog">About</button>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <main class="stage" id="stage">
+      <div class="sky" id="skyWrap">
+        <canvas id="sky" aria-label="The whole sky at the frequency you're tuned to" role="img"></canvas>
+        <div class="sky-axis" id="axis" aria-hidden="true">
+          <span>180°</span><span>90°</span><span>Galactic center</span><span>270°</span><span>180°</span>
+        </div>
+        <div class="tip" id="tip" hidden></div>
+        <figure class="legend" id="legend">
+          <div class="legend-bar" id="legendBar"></div>
+          <div class="legend-swatches" id="legendSwatches"></div>
+          <div class="legend-scale"><span id="legendLo"></span><span id="legendHi"></span></div>
+          <figcaption id="legendCap">Brightness temperature</figcaption>
+        </figure>
+        <div class="marker" id="marker" hidden>
+          <i class="marker-ring" aria-hidden="true"></i>
+          <p class="marker-label"><b id="markerName"></b> <span id="markerDate"></span></p>
+        </div>
+        <p class="loading" id="loading"></p>
+        <button class="nowplaying" id="nowPlaying" type="button" hidden>
+          <span class="lamp" aria-hidden="true"></span><span id="nowPlayingTitle"></span><span class="nowplaying-cue">Read</span>
+        </button>
+      </div>
+    </main>
+
+    <section class="console" id="console" aria-label="Tuner">
+      <div class="readout">
+        <p class="freq" aria-live="off">
+          <span class="freq-value" id="freqValue">98.70</span>
+          <span class="freq-unit" id="freqUnit">MHz</span>
+        </p>
+        <dl class="facts">
+          <div class="fact"><dt>Wavelength</dt><dd id="wave">3.04 m</dd></div>
+          <div class="fact"><dt id="tskyLabel">Sky temperature</dt><dd><span id="tsky">–</span><span class="meter" id="meter" aria-hidden="true"><i id="meterFill"></i></span></dd></div>
+          <div class="fact fact-wide"><dt>Here on the dial</dt><dd id="context">–</dd></div>
+        </dl>
+        <p class="signal" id="signal"><span class="lamp" id="lamp"></span>Signal</p>
+      </div>
+
+      <div class="tuner">
+        <div class="dial">
+          <canvas id="dial" tabindex="0" role="slider" aria-label="Frequency"
+            aria-valuemin="10" aria-valuemax="1000000000000000000" aria-valuenow="98.7" aria-valuetext="98.70 megahertz"></canvas>
+        </div>
+        <canvas id="overview" class="overview" aria-hidden="true"></canvas>
+      </div>
+    </section>
+
+    <aside class="deck" id="deck" aria-label="Tape deck">
+      <article class="card" id="card" aria-labelledby="cardTitle">
+        <div class="card-lock" id="cardLock" aria-hidden="true"></div>
+        <div class="card-inner" id="cardInner">
+          <p class="card-freq" id="cardFreq"></p>
+          <h2 class="card-title" id="cardTitle"></h2>
+          <p class="card-body" id="cardBody"></p>
+          <dl class="card-meta" id="cardMeta"></dl>
+          <p class="card-links" id="cardLinks"></p>
+        </div>
+      </article>
+      <section id="shelf" aria-label="Tapes"></section>
+      <div id="player" aria-label="Tape player and radio" role="group"></div>
+    </aside>
+  </div>
+  <p class="sr-only" id="announce" aria-live="polite"></p>
+  <div class="flight" id="flight" aria-hidden="true"></div>
+
+  <div class="intro" id="intro">
+    <div class="intro-inner">
+      <h1 class="intro-mark">Static</h1>
+      <p class="intro-lead">Tune the real sky.</p>
+      <p class="intro-body">The radio tunes from 10 MHz radio waves through infrared and visible light to X-rays and gamma rays, and at every frequency you see the whole sky as it really looks there. The tapes on the shelf hold real sounds recorded on Mars, near Jupiter and at a launch pad on Earth.</p>
+      <button class="power" id="powerBtn" type="button">
+        <span class="power-knob" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 3v8" /><path d="M6.3 6.9a8 8 0 1 0 11.4 0" /></svg>
+        </span>
+        <span class="power-label">Turn on</span>
+      </button>
+      <p class="intro-note" id="introNote">Best with headphones.</p>
+    </div>
+  </div>
+
+  <div class="about" id="about" role="dialog" aria-modal="true" aria-labelledby="aboutTitle" hidden>
+    <div class="about-panel">
+      <button class="about-close textbtn" id="aboutClose" type="button">Close</button>
+      <h2 id="aboutTitle">A radio for the sky, and a shelf of tapes</h2>
+      <p>Every position on this dial is a real frequency, and the map above it is the entire sky at that frequency. The galactic center sits in the middle; the bright band is the disk of the Milky Way, seen from inside.</p>
+      <p>Up to 5 THz, the maps come from GSM2016, a model by Haoxuan Zheng and colleagues that combines 29 maps of the sky, from ground-based radio surveys to the Planck satellite, into one continuous radio sky.</p>
+      <p>Above that, the dial leaves radio behind. Each station is a real all-sky survey, from the IRAS satellite's infrared to Fermi's gamma rays, with Axel Mellinger's photograph of the whole night sky in the middle. Between surveys you get static: no telescope has mapped the whole sky at those frequencies.</p>
+
+      <h3>How to tune</h3>
+      <ul>
+        <li>Drag the dial, or roll the tuning wheel on the side of the player. Your scroll wheel makes small moves.</li>
+        <li>Click a station's name on the dial to jump to it. With the player on Radio, the rewind and fast-forward keys jump between stations, and Band steps through the spectrum.</li>
+        <li>On a keyboard: left and right fine-tune (hold Shift for bigger steps), up and down jump between stations, M mutes, and the space bar plays or stops a tape.</li>
+        <li>Point at the sky to read its temperature at that spot (radio maps only).</li>
+        <li>Share a frequency or a tape: the address bar always holds the one you're on.</li>
+      </ul>
+      <div class="about-knob" id="knobRow" hidden>
+        <p>Built the Arduino tuning knob from the README? Plug it in and connect it here. This works in Chrome and Edge.</p>
+        <button class="pillbtn" id="knobBtn" type="button">Connect a knob</button>
+      </div>
+
+      <h3>The tapes</h3>
+      <p>Every tape is a real recording, published by NASA on its Sounds from Beyond page. On Mars they come from two places. InSight's seismometer felt vibrations rather than sound in the air, so most of its recordings were sped up for human ears. Perseverance carried the first microphones to record sound on another planet. The Juno tape is radio, shifted down into hearing range. Where NASA released two versions of a recording, they are the two sides of one tape.</p>
+      <p>While a tape plays, the sky marks where that planet was, seen from Earth, on the day it was recorded, worked out from JPL's tables of the planets' orbits. The player is an original design: its reels turn the way a cassette's would at 4.76 cm a second, and its counter follows the recording itself.</p>
+
+      <h3>What's real here</h3>
+      <p>The maps, temperatures and wavelengths are data. On the radio half of the dial, the loudness of the static follows the median brightness temperature of the whole sky at the frequency you're on, cosmic microwave background included.</p>
+      <p>Temperatures are Rayleigh–Jeans brightness temperatures, the convention radio astronomers use. It's why warm dust near 3 THz reads in millionths of a kelvin: at those frequencies, even warm things look faint on this scale.</p>
+      <p>The survey images are the surveys' own pictures, as published by the CDS archive in Strasbourg, reprojected here into the same map. Their colors are the survey teams' (or, for single-band surveys, a tint added here); visible light is true color.</p>
+      <p>Station sounds are translations. Spectral lines and survey colors are slowed by whole octaves, so their pitch ratios stay true; the pulsar keeps its real period; GPS plays its real satellite code, slowed down. Jupiter and the FM band are synthesized stand-ins, not recordings.</p>
+      <p>The band labels on the dial are a simplified version of the US Table of Frequency Allocations. The clear slits are bands where, under footnote US246, no station may transmit, so astronomers can listen.</p>
+
+      <h3>Data and credits</h3>
+      <ul class="credits">
+        <li>Sky model: Zheng et al. (2017), <a href="https://doi.org/10.1093/mnras/stw2525">An improved model of diffuse galactic radio emission from 10 MHz to 5 THz</a>, MNRAS 464, 3486. Data: <a href="https://github.com/jeffzhen/gsm2016">github.com/jeffzhen/gsm2016</a> (MIT License).</li>
+        <li id="hiCredit" hidden>Hydrogen: HI4PI Collaboration (2016), <a href="https://doi.org/10.1051/0004-6361/201629178">HI4PI: a full-sky H I survey based on EBHIS and GASS</a>, A&amp;A 594, A116.</li>
+        <li>Survey images: served in HiPS format by <a href="https://cds.unistra.fr/">CDS</a>, Strasbourg (Unistra/CNRS, ODbL). IRAS/IRIS: Miville-Deschênes &amp; Lagache (2005), NASA/IPAC. AllWISE: NASA/JPL-Caltech/UCLA. 2MASS: UMass and IPAC/Caltech, NASA, NSF. H-alpha: Finkbeiner (2003). Night sky: © Axel Mellinger, shown live from CDS. GALEX: NASA/Caltech. ROSAT: MPE. INTEGRAL: ESA. Fermi: NASA/DOE/Fermi LAT Collaboration.</li>
+        <li>Spectrum: NTIA, <a href="https://www.ntia.gov/page/united-states-frequency-allocation-chart">United States Frequency Allocations</a>; footnote US246.</li>
+        <li>Jupiter: <a href="https://radiojove.gsfc.nasa.gov/">NASA Radio JOVE</a>.</li>
+        <li>Tapes: NASA, <a href="https://www.nasa.gov/sounds-from-beyond/">Sounds from Beyond</a>. NASA audio is generally not subject to copyright in the United States; each tape lists the credit NASA gives it. InSight's seismometer, SEIS, was provided by France's space agency CNES and its partners. No endorsement by NASA is implied.</li>
+        <li>Planet positions: E. M. Standish and J. G. Williams, as published by JPL's Solar System Dynamics group, <a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">Approximate Positions of the Planets</a>.</li>
+        <li>Type: Anybody by Etcetera Type Co. and Newsreader by Production Type, both under the SIL Open Font License.</li>
+      </ul>
+      <p class="byline">Made by Rohan Tucker, 2026.</p>
+    </div>
+  </div>
+
+  <noscript><p class="noscript">Static needs JavaScript and WebGL to draw the sky.</p></noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

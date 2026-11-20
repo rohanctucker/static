@@ -1,0 +1,39 @@
+{
+ "version": 1,
+ "source": "https://www.nasa.gov/sounds-from-beyond/",
+ "note": "Written by tools/fetch_tapes.py. Sides not listed here stream from NASA.",
+ "files": {
+  "lm01b": "lm01b.wav",
+  "lm02a": "lm02a.wav",
+  "lm03a": "lm03a.wav",
+  "lm04a": "lm04a.wav",
+  "lm05a": "lm05a.wav",
+  "lm06a": "lm06a.wav",
+  "lm07a": "lm07a.wav",
+  "lm07b": "lm07b.wav",
+  "lm08a": "lm08a.wav",
+  "lm09a": "lm09a.wav",
+  "lm10a": "lm10a.wav",
+  "lm11a": "lm11a.wav",
+  "lm12a": "lm12a.wav",
+  "lm13a": "lm13a.wav",
+  "lm15a": "lm15a.mp3",
+  "lm15b": "lm15b.mp3"
+ },
+ "durations": {
+  "lm01b": 20.01,
+  "lm02a": 111.05,
+  "lm03a": 46.87,
+  "lm04a": 120.11,
+  "lm05a": 15.67,
+  "lm06a": 20.0,
+  "lm07a": 18.02,
+  "lm07b": 18.02,
+  "lm08a": 39.96,
+  "lm09a": 11.0,
+  "lm10a": 85.0,
+  "lm11a": 150.05,
+  "lm12a": 49.04,
+  "lm13a": 26.99
+ }
+}
