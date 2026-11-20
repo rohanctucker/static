@@ -39,12 +39,12 @@ export const TAPES = [
     notes:
       "Five days after landing, wind of 5 to 7 meters per second rolled over InSight's solar panels. The panels shook, and the seismometer sitting on the deck felt it. These were the first sounds of Martian wind anyone had heard.",
     sides: [
-      { name: "Raw", how: "The seismometer's data, released unaltered. It is very low: use headphones.",
-        credit: "NASA/JPL-Caltech/CNES/UKSA/Imperial College London/Oxford/ETH",
-        file: "lm01a", url: "https://www.nasa.gov/wp-content/uploads/2015/01/06-MASTERRESAMPLED-48Kraw_velocity_0.6_normalisedx1.wav" },
-      { name: "Two octaves up", how: "The same data, raised two octaves so laptop and phone speakers can play it.",
+      { name: "Two octaves up", how: "The seismometer's data, raised two octaves so laptop and phone speakers can play it.",
         credit: "NASA/JPL-Caltech/CNES/IPGP/Imperial College London/Oxford",
         file: "lm01b", url: "https://www.nasa.gov/wp-content/uploads/2015/01/08-Brian-Cook_raw_velocity_0.6_normalisedx1_2octavesUp_03.wav" },
+      { name: "Raw", how: "The same data, released unaltered. It is very low: use headphones.",
+        credit: "NASA/JPL-Caltech/CNES/UKSA/Imperial College London/Oxford/ETH",
+        file: "lm01a", url: "https://www.nasa.gov/wp-content/uploads/2015/01/06-MASTERRESAMPLED-48Kraw_velocity_0.6_normalisedx1.wav" },
     ],
   },
   {
@@ -109,10 +109,10 @@ export const TAPES = [
   },
   {
     id: "lm07", mission: "perseverance", body: "mars", date: "2021-02-20T12:00Z", when: "Feb. 20, 2021", stamp: "FEB 20 2021",
-    title: "Sixty seconds of Jezero", spine: "Sixty seconds",
+    title: "Two days in", spine: "Two days in",
     instrument: "The microphone on the rover's side, built to record the landing",
     notes:
-      "This off-the-shelf microphone was added to hear the landing, and got nothing usable on the way down. Two days later it recorded a minute of Jezero Crater. Side A keeps the rover's own whirring; on side B NASA filtered most of it out, and a gust of wind comes through about ten seconds in.",
+      "This off-the-shelf microphone was added to hear the landing, and got nothing usable on the way down. Two days later it recorded a minute of Jezero Crater, and this tape holds 18 seconds of it. Side A keeps the rover's own whirring; on side B NASA filtered most of it out, so a gust of Martian wind comes through clearly.",
     sides: [
       { name: "With the rover's hum", how: "As recorded, rover noise and all.",
         credit: "NASA/JPL-Caltech",
@@ -153,7 +153,7 @@ export const TAPES = [
     notes:
       "The rover's wheels and suspension working over rock, plus a high-pitched scratching the engineers were still trying to explain: interference from an electronics box, or the wheels against the ground. This microphone was never meant to work on the surface.",
     sides: [
-      { name: "Highlights", how: "Three stretches of the full recording, joined into 90 seconds and filtered to cut some noise.",
+      { name: "Highlights", how: "Three stretches of the full recording, joined together and filtered to cut some noise.",
         credit: "NASA/JPL-Caltech",
         file: "lm10a", url: "https://www.nasa.gov/wp-content/uploads/2024/05/filtered-highlights-sol16roverdrivehighlights.wav" },
       { name: "All 16 minutes", how: "Raw and unfiltered.",
@@ -190,7 +190,7 @@ export const TAPES = [
     title: "A dust devil", spine: "Dust devil",
     instrument: "SuperCam's microphone",
     notes:
-      "A dust devil about 25 meters across passed straight over the rover, and for the first time the microphone was on when one did. It's switched on for only a couple of minutes, about eight times a month. Listen for wind, a lull as the calm center passes, then wind again, and the ticks of 308 dust grains hitting the rover.",
+      "A dust devil about 25 meters across passed straight over the rover, and for the first time the microphone was on when one did. It's switched on for less than three minutes at a time, about eight times a month. Listen for wind, a lull as the calm center passes, then wind again, and the ticks of 308 dust grains hitting the rover.",
     sides: [
       { name: "Side A", how: "",
         credit: "NASA/JPL-Caltech/LANL/CNES/CNRS/INTA-CSIC/Space Science Institute/ISAE-Supaero",

@@ -21,7 +21,7 @@ const START = Math.log10(98.7);
 // the player's BAND button steps through the spectrum, landing somewhere worth hearing in each
 const BAND_HOMES = [
   ["RADIO", 1, Math.log10(98.7)], ["MICROWAVE", 3.48, Math.log10(160200)], ["INFRARED", 5.48, "iras"],
-  ["VISIBLE", 8.6, "mellinger"], ["ULTRAVIOLET", 8.9, "galex"], ["X-RAY", 10.48, "rosat"], ["GAMMA", 13.38, "fermi"],
+  ["VISIBLE", 8.6, "gaia"], ["ULTRAVIOLET", 8.9, "galex"], ["X-RAY", 10.48, "integral"], ["GAMMA", 13.38, "fermi"],
 ];
 
 const state = {
@@ -453,8 +453,8 @@ function loadingText(ph) {
   const s = ph.dominant;
   if (!s || ph.gsm > 0.5) return "";
   const st = bank.get(s.id).state;
-  if (st === "loading" || st === "idle") return `Fetching ${s.dial === "NIGHT SKY" ? "the night sky" : s.dial} from the CDS archive`;
-  if (st === "error") return `${s.dial === "NIGHT SKY" ? "The night sky" : s.dial} couldn't load right now`;
+  if (st === "loading" || st === "idle") return `Loading ${s.dial}`;
+  if (st === "error") return `${s.dial} couldn't load right now`;
   return "";
 }
 
@@ -653,7 +653,7 @@ function fillStation(s) {
     map = "The sky as it would look from above the atmosphere, from GSM2016.";
   } else if (s.survey) {
     const st = bank.get(s.id).state;
-    map = s.survey.credit + (st === "error" ? " It couldn't load from the CDS archive just now: check your connection and tune back in." : "");
+    map = s.survey.credit + (st === "error" ? " It couldn't load just now: check your connection and tune back in." : "");
   }
   setMeta([["Sound", s.hear || ""], ["Map", map]]);
   setLinks(s.links || []);

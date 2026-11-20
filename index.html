@@ -102,7 +102,7 @@
     <div class="intro-inner">
       <h1 class="intro-mark">Static</h1>
       <p class="intro-lead">Tune the real sky.</p>
-      <p class="intro-body">The radio tunes from 10 MHz radio waves through infrared and visible light to X-rays and gamma rays, and at every frequency you see the whole sky as it really looks there. The tapes on the shelf hold real sounds recorded on Mars, near Jupiter and at a launch pad on Earth.</p>
+      <p class="intro-body">The radio tunes from 10 MHz radio waves through infrared and visible light to X-rays and gamma rays, and at every frequency you see the whole sky as it really looks there. The tapes on the shelf hold real NASA recordings made on Mars, near Jupiter and at a launch pad on Earth.</p>
       <button class="power" id="powerBtn" type="button">
         <span class="power-knob" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M12 3v8" /><path d="M6.3 6.9a8 8 0 1 0 11.4 0" /></svg>
@@ -119,7 +119,7 @@
       <h2 id="aboutTitle">A radio for the sky, and a shelf of tapes</h2>
       <p>Every position on this dial is a real frequency, and the map above it is the entire sky at that frequency. The galactic center sits in the middle; the bright band is the disk of the Milky Way, seen from inside.</p>
       <p>Up to 5 THz, the maps come from GSM2016, a model by Haoxuan Zheng and colleagues that combines 29 maps of the sky, from ground-based radio surveys to the Planck satellite, into one continuous radio sky.</p>
-      <p>Above that, the dial leaves radio behind. Each station is a real all-sky survey, from the IRAS satellite's infrared to Fermi's gamma rays, with Axel Mellinger's photograph of the whole night sky in the middle. Between surveys you get static: no telescope has mapped the whole sky at those frequencies.</p>
+      <p>Above that, the dial leaves radio behind. Each station is a real all-sky survey, from the IRAS satellite's infrared to Fermi's gamma rays, with ESA's Gaia map of the visible sky in the middle. Between surveys the picture dissolves into static until the next one comes into range.</p>
 
       <h3>How to tune</h3>
       <ul>
@@ -130,18 +130,18 @@
         <li>Share a frequency or a tape: the address bar always holds the one you're on.</li>
       </ul>
       <div class="about-knob" id="knobRow" hidden>
-        <p>Built the Arduino tuning knob from the README? Plug it in and connect it here. This works in Chrome and Edge.</p>
+        <p>Built the Arduino tuning knob from this project's code? Plug it in and connect it here. This works in Chrome and Edge.</p>
         <button class="pillbtn" id="knobBtn" type="button">Connect a knob</button>
       </div>
 
       <h3>The tapes</h3>
-      <p>Every tape is a real recording, published by NASA on its Sounds from Beyond page. On Mars they come from two places. InSight's seismometer felt vibrations rather than sound in the air, so most of its recordings were sped up for human ears. Perseverance carried the first microphones to record sound on another planet. The Juno tape is radio, shifted down into hearing range. Where NASA released two versions of a recording, they are the two sides of one tape.</p>
+      <p>Every tape is a real recording, published by NASA on its Sounds from Beyond page. On Mars they come from two places. InSight's seismometer felt vibrations rather than sound in the air, so most of its recordings were sped up for human ears. Perseverance carried the first microphones to record sound on Mars. The Juno tape is radio, shifted down into hearing range. Where NASA released two versions of a recording, they are the two sides of one tape.</p>
       <p>While a tape plays, the sky marks where that planet was, seen from Earth, on the day it was recorded, worked out from JPL's tables of the planets' orbits. The player is an original design: its reels turn the way a cassette's would at 4.76 cm a second, and its counter follows the recording itself.</p>
 
       <h3>What's real here</h3>
       <p>The maps, temperatures and wavelengths are data. On the radio half of the dial, the loudness of the static follows the median brightness temperature of the whole sky at the frequency you're on, cosmic microwave background included.</p>
       <p>Temperatures are Rayleigh–Jeans brightness temperatures, the convention radio astronomers use. It's why warm dust near 3 THz reads in millionths of a kelvin: at those frequencies, even warm things look faint on this scale.</p>
-      <p>The survey images are the surveys' own pictures, as published by the CDS archive in Strasbourg, reprojected here into the same map. Their colors are the survey teams' (or, for single-band surveys, a tint added here); visible light is true color.</p>
+      <p>The survey images are the surveys' own pictures, as published by the archives that host them, reprojected here into the same map. Their colors are the ones the archives gave them, or for single-band surveys a tint added here. Gaia's map shows its blue and red bands as blue and red, and its broad band as green.</p>
       <p>Station sounds are translations. Spectral lines and survey colors are slowed by whole octaves, so their pitch ratios stay true; the pulsar keeps its real period; GPS plays its real satellite code, slowed down. Jupiter and the FM band are synthesized stand-ins, not recordings.</p>
       <p>The band labels on the dial are a simplified version of the US Table of Frequency Allocations. The clear slits are bands where, under footnote US246, no station may transmit, so astronomers can listen.</p>
 
@@ -149,9 +149,9 @@
       <ul class="credits">
         <li>Sky model: Zheng et al. (2017), <a href="https://doi.org/10.1093/mnras/stw2525">An improved model of diffuse galactic radio emission from 10 MHz to 5 THz</a>, MNRAS 464, 3486. Data: <a href="https://github.com/jeffzhen/gsm2016">github.com/jeffzhen/gsm2016</a> (MIT License).</li>
         <li id="hiCredit" hidden>Hydrogen: HI4PI Collaboration (2016), <a href="https://doi.org/10.1051/0004-6361/201629178">HI4PI: a full-sky H I survey based on EBHIS and GASS</a>, A&amp;A 594, A116.</li>
-        <li>Survey images: served in HiPS format by <a href="https://cds.unistra.fr/">CDS</a>, Strasbourg (Unistra/CNRS, ODbL). IRAS/IRIS: Miville-Deschênes &amp; Lagache (2005), NASA/IPAC. AllWISE: NASA/JPL-Caltech/UCLA. 2MASS: UMass and IPAC/Caltech, NASA, NSF. H-alpha: Finkbeiner (2003). Night sky: © Axel Mellinger, shown live from CDS. GALEX: NASA/Caltech. ROSAT: MPE. INTEGRAL: ESA. Fermi: NASA/DOE/Fermi LAT Collaboration.</li>
+        <li>Survey images: served in HiPS format by <a href="https://cds.unistra.fr/">CDS</a>, Strasbourg (Unistra/CNRS, ODbL), with copies from NASA/IPAC IRSA and ESA's ESASky. IRAS/IRIS: Miville-Deschênes &amp; Lagache (2005), NASA/IPAC. AllWISE: NASA/JPL-Caltech/UCLA. 2MASS: UMass and IPAC/Caltech, NASA, NSF. H-alpha: Finkbeiner (2003). Gaia: ESA/Gaia/DPAC. GALEX: NASA/Caltech. ROSAT: MPE. INTEGRAL: ESA. Fermi: NASA/DOE/Fermi LAT Collaboration.</li>
         <li>Spectrum: NTIA, <a href="https://www.ntia.gov/page/united-states-frequency-allocation-chart">United States Frequency Allocations</a>; footnote US246.</li>
-        <li>Jupiter: <a href="https://radiojove.gsfc.nasa.gov/">NASA Radio JOVE</a>.</li>
+        <li>Jupiter's frequency and burst types: <a href="https://radiojove.gsfc.nasa.gov/">NASA Radio JOVE</a>.</li>
         <li>Tapes: NASA, <a href="https://www.nasa.gov/sounds-from-beyond/">Sounds from Beyond</a>. NASA audio is generally not subject to copyright in the United States; each tape lists the credit NASA gives it. InSight's seismometer, SEIS, was provided by France's space agency CNES and its partners. No endorsement by NASA is implied.</li>
         <li>Planet positions: E. M. Standish and J. G. Williams, as published by JPL's Solar System Dynamics group, <a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html">Approximate Positions of the Planets</a>.</li>
         <li>Type: Anybody by Etcetera Type Co. and Newsreader by Production Type, both under the SIL Open Font License.</li>

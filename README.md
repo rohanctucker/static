@@ -1,6 +1,6 @@
 # Static
 
-A portable radio that tunes the real sky, and a shelf of tapes recorded on other worlds.
+A portable radio that tunes the real sky, and a shelf of tapes from NASA missions to Mars, Jupiter and the Moon.
 
 **Live:** https://rohanctucker.github.io/static/
 
@@ -20,7 +20,7 @@ launch. Put a tape in, press play, and the sky marks where that planet was on th
 
 Twenty-one stations sit on the dial. Among them are Jupiter's radio storms, the first pulsar ever
 found, the hydrogen line, GPS and the afterglow of the Big Bang. Past them come real all-sky surveys:
-IRAS, WISE, 2MASS, a photograph of the whole night sky, GALEX, ROSAT, INTEGRAL and Fermi. Lock onto a
+IRAS, WISE, 2MASS, H-alpha, Gaia's map of the visible sky, GALEX, ROSAT, INTEGRAL and Fermi. Lock onto a
 station and you hear it, and a card explains what you're looking at. Between stations, the static is
 as loud as the sky is bright.
 
@@ -39,8 +39,8 @@ steps from radio to gamma rays, and keys that jump between stations.
 ## What's real
 
 - **The maps are data.** Up to 5 THz they come from GSM2016, a model of the radio sky built from 29
-  surveys, rendered straight from the authors' published data. Above that, each station is the
-  survey team's own all-sky image, reprojected into the same map. That projection was checked
+  surveys, rendered straight from the authors' published data. Above that, each station is a real
+  all-sky survey image, reprojected into the same map. That projection was checked
   against a real survey tile: Orion's belt lands within 0.6 arcminutes of where it belongs.
 - **The temperatures and the static are data.** The static follows the median brightness of the
   whole sky at each frequency: about 265,000 K at 10 MHz, 25 K at 408 MHz and 3.6 K at the hydrogen
@@ -49,10 +49,10 @@ steps from radio to gamma rays, and keys that jump between stations.
   rather than sound in the air, so NASA sped its marsquakes up for human ears. The Ganymede tape is
   radio, shifted into hearing range. The player adds a moment of tape hiss before a recording starts,
   never over it.
-- **The planet positions are calculated** from JPL's orbital elements, to about an arcminute. For
+- **The planet positions are calculated** from JPL's orbital elements, to within a few arcminutes. For
   example, Mars on Feb. 19, 2021 comes out 205 million km from Earth, 11 min 25 s away by radio.
 - **The station sounds are translations.** Spectral lines are slowed by whole octaves, so their pitch
-  ratios stay true: the hydrogen line at 1420.4058 MHz plays at 338.66 Hz. The pulsar keeps CP 1919's
+  ratios stay true: the hydrogen line at 1420.4058 MHz plays at 338.65 Hz. The pulsar keeps CP 1919's
   real period, and GPS plays the real code of satellite 1, slowed down. Jupiter and the FM band are
   synthesized stand-ins.
 
@@ -96,11 +96,10 @@ and open http://localhost:8000.
 
 - Sky model: H. Zheng et al. (2017), "An improved model of diffuse galactic radio emission from 10 MHz to
   5 THz", MNRAS 464, 3486. Data and code: github.com/jeffzhen/gsm2016 (MIT License).
-- Survey images: HiPS served by CDS, Strasbourg (Unistra/CNRS; HiPS under ODbL), with mirrors at
-  NASA/IPAC IRSA and ESA. IRAS/IRIS: Miville-Deschênes & Lagache (2005), NASA/IPAC. AllWISE:
+- Survey images: HiPS from CDS, Strasbourg (Unistra/CNRS; ODbL), NASA/IPAC IRSA and ESA's ESASky.
+  IRAS/IRIS: Miville-Deschênes & Lagache (2005), NASA/IPAC. AllWISE:
   NASA/JPL-Caltech/UCLA. 2MASS: University of Massachusetts and IPAC/Caltech, NASA, NSF. H-alpha:
-  Finkbeiner (2003). Night sky: © 2000–2017 Axel Mellinger, all rights reserved, shown live from CDS and
-  not redistributed. GALEX: NASA/Caltech. ROSAT: MPE. INTEGRAL: ESA. Fermi: NASA/DOE/Fermi LAT
+  Finkbeiner (2003). Gaia: ESA/Gaia/DPAC. GALEX: NASA/Caltech. ROSAT: MPE. INTEGRAL: ESA. Fermi: NASA/DOE/Fermi LAT
   Collaboration.
 - Tapes: NASA, "Sounds from Beyond" (nasa.gov/sounds-from-beyond). NASA audio is generally not subject to
   copyright in the United States. Each tape carries the credit NASA gives it. No endorsement by NASA is
@@ -110,5 +109,4 @@ and open http://localhost:8000.
 - Spectrum allocations: NTIA, United States Frequency Allocations, and footnote US246.
 - Type: Anybody (Etcetera Type Co.) and Newsreader (Production Type), SIL Open Font License.
 
-Made by Rohan Tucker, 2026. Concept, direction and curation by Rohan. Built with Claude, an AI assistant
-made by Anthropic, which wrote the code.
+Made by Rohan Tucker, 2026.

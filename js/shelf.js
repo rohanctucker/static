@@ -23,7 +23,7 @@ export class Shelf {
         </button>
       </li>`;
     }).join("");
-    this.capHTML = `<b>${SERIES}</b> Real recordings from other worlds. Pick a tape.`;
+    this.capHTML = `<b>${SERIES}</b> Real NASA recordings. Pick a tape.`;
     root.innerHTML = `
       <p class="shelf-cap" aria-hidden="true">${this.capHTML}</p>
       <div class="shelf-unit">

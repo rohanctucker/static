@@ -1,6 +1,6 @@
-// Past 5 THz the dial leaves radio behind. Each station up here is a real all-sky survey image,
-// served in HiPS format by the CDS astronomical data centre (Strasbourg) and reprojected in the
-// browser into the same galactic map as the radio sky (see hipsproj.js).
+// Past 5 THz the dial leaves radio behind. Each station up here is a real all-sky survey image in
+// HiPS format (from CDS in Strasbourg, or the copies kept by NASA/IPAC IRSA and ESA's ESASky),
+// reprojected in the browser into the same galactic map as the radio sky (see hipsproj.js).
 
 import { mhzFromWavelength, mhzFromEnergy } from "./format.js";
 import { reprojectAllsky } from "./hipsproj.js";
@@ -23,7 +23,7 @@ const GeV = (x) => mhzFromEnergy(x * 1e9);
 export const SURVEYS = [
   {
     key: "iras", legend: { caption: "Infrared colors from 12 to 100 microns" }, dial: "IRAS", title: "The first infrared sky", f: um(60), freqLabel: "12–100 µm", reach: 0.2,
-    base: [`${CDS}/IRISColor`, `${CDS_BIS}/IRISColor`, `${IRSA}/IRIS/color`], ext: "jpg", frame: "galactic",
+    base: [`${CDS}/IRISColor`, `${IRSA}/IRIS/color`, `${CDS_BIS}/IRISColor`], ext: "jpg", frame: "galactic",
     tones: [um(100), um(60), um(25), um(12)], toneNames: "its four colors, 12, 25, 60 and 100 microns,", equalTones: true,
     body:
       "In 1983 the IRAS satellite mapped 96% of the sky in four infrared colors, cooled by liquid helium until it ran out ten months later. It found wispy clouds of dust far from the Milky Way, nicknamed infrared cirrus, and the first dusty disk around another star, Vega.",
@@ -32,7 +32,7 @@ export const SURVEYS = [
   },
   {
     key: "wise", legend: { swatches: [["22 µm", "#ff5a46"], ["4.6 µm", "#52d66e"], ["3.4 µm", "#5a90ff"]] }, dial: "WISE", title: "Starlight and warm dust", f: um(7), freqLabel: "3.4–22 µm",
-    base: [`${CDS_BIS}/AllWISE/RGB-W4-W2-W1`, `${CDS}/AllWISE/RGB-W4-W2-W1`, `${IRSA}/AllWISE/RGB-W4-W2-W1`], ext: "jpg", frame: "equatorial",
+    base: [`${CDS}/AllWISE/RGB-W4-W2-W1`, `${IRSA}/AllWISE/RGB-W4-W2-W1`, `${CDS_BIS}/AllWISE/RGB-W4-W2-W1`], ext: "jpg", frame: "equatorial",
     tones: [um(22), um(4.6), um(3.4)], toneNames: "its three colors, 22, 4.6 and 3.4 microns,",
     body:
       "NASA's WISE telescope mapped the whole sky in 2010. Blue and green here are starlight at 3.4 and 4.6 microns, where the Milky Way's old stars shine through most of the dust. Red is 22 microns: dust warmed by young stars.",
@@ -41,7 +41,7 @@ export const SURVEYS = [
   },
   {
     key: "twomass", legend: { swatches: [["2.17 µm", "#ff5a46"], ["1.65 µm", "#52d66e"], ["1.25 µm", "#5a90ff"]] }, dial: "2MASS", title: "Through the dust", f: um(1.65), freqLabel: "1.2–2.2 µm",
-    base: [`${CDS_BIS}/2MASS/Color`, `${CDS}/2MASS/Color`, `${IRSA}/2MASS/Color`], ext: "jpg", frame: "equatorial",
+    base: [`${CDS}/2MASS/Color`, `${IRSA}/2MASS/Color`, `${CDS_BIS}/2MASS/Color`], ext: "jpg", frame: "equatorial",
     tones: [um(2.17), um(1.65), um(1.25)], toneNames: "its three colors, 2.17, 1.65 and 1.25 microns,",
     body:
       "Near-infrared light slips through the dust that blocks visible light, so the bulge at the center of the galaxy comes into view. Between 1997 and 2001, the 2MASS survey scanned the entire sky with two telescopes, one in Arizona and one in Chile, and catalogued 470 million stars.",
@@ -50,7 +50,7 @@ export const SURVEYS = [
   },
   {
     key: "halpha", legend: { caption: "Hydrogen-alpha brightness" }, dial: "H-ALPHA", title: "Hydrogen's red glow", f: nm(656.28), freqLabel: "656.28 nm", reach: 0.08,
-    base: [`${CDS}/FinkbeinerHalpha`, `${CDS_BIS}/FinkbeinerHalpha`], ext: "jpg", frame: "galactic",
+    base: [`${CDS}/FinkbeinerHalpha`, `${ESA}/FinkbeinerHa`, `${CDS_BIS}/FinkbeinerHalpha`], ext: "jpg", frame: "galactic",
     tint: [1.0, 0.16, 0.12], tones: [nm(656.28)], toneNames: "hydrogen-alpha, 456.8 THz,",
     body:
       "When starlight strips a hydrogen atom of its electron and the atom catches one again, it often glows at exactly this frequency: the deep red of hydrogen-alpha, the visible-light cousin of the radio hydrogen line. It traces gas lit up by hot young stars.",
@@ -58,21 +58,21 @@ export const SURVEYS = [
     links: [{ label: "The H-alpha map", href: "https://lambda.gsfc.nasa.gov/product/foreground/fg_halpha_info.html" }],
   },
   {
-    key: "mellinger", legend: { caption: "True color, as your eyes would see it" }, dial: "NIGHT SKY", title: "The night sky", f: nm(529), freqLabel: "400–700 nm", reach: 0.12, live: true,
-    base: [`${CDS}/MellingerRGB`, `${CDS_BIS}/MellingerRGB`], ext: "jpg", frame: "galactic",
-    tones: [nm(620), nm(540), nm(450)], toneNames: "red, green and blue light,",
+    key: "gaia", legend: { caption: "Starlight in Gaia's three color bands" }, dial: "GAIA", title: "Made of starlight", f: nm(529), freqLabel: "330–1050 nm", reach: 0.12,
+    base: [`${ESA}/Gaia/dr3/RGB`], ext: "png", frame: "galactic",
+    tones: [nm(777), nm(622), nm(511)], toneNames: "Gaia's three color bands,",
     body:
-      "This is the sky your eyes would see from a very dark place, all of it at once. Axel Mellinger stitched it from more than 3,000 photos taken over 22 months in South Africa, Texas and Michigan, and calibrated their colors against catalog stars. The dark rifts are dust clouds hiding the stars behind them.",
-    credit: "© 2000–2017 Axel Mellinger, all rights reserved (Mellinger 2009, PASP 121, 1180). Shown live from CDS's sky-survey service.",
-    links: [{ label: "milkywaysky.com", href: "https://www.milkywaysky.com/" }],
+      "ESA's Gaia spacecraft spent more than a decade measuring the position, brightness and color of about 1.8 billion stars. Add up their light, star by star, and you get this map of the visible sky. The dark rifts are dust clouds hiding the stars behind them, and the two smudges below the disk on the right are the Magellanic Clouds, two small neighboring galaxies.",
+    credit: "Gaia DR3 colour flux map: ESA/Gaia/DPAC, served by ESASky.",
+    links: [{ label: "Gaia at ESA", href: "https://www.cosmos.esa.int/web/gaia" }],
   },
   {
     key: "galex", legend: { caption: "Near-ultraviolet brightness" }, dial: "GALEX", title: "Too bright to look at", f: nm(231), freqLabel: "231 nm",
-    base: [`${CDS}/GALEX/GALEXGR6_7_NUV`, `${CDS_BIS}/GALEX/GALEXGR6_7_NUV`], ext: "png", frame: "equatorial",
+    base: [`${CDS}/GALEX/GALEXGR6_7_NUV`, `${IRSA}/GALEX/GR6-03-2014/AIS-ND`, `${CDS_BIS}/GALEX/GALEXGR6_7_NUV`], ext: "png", frame: "equatorial",
     tint: [0.62, 0.42, 1.0], tones: [nm(231)], toneNames: "its ultraviolet band, 1.30 PHz,",
     body:
       "NASA's GALEX telescope mapped ultraviolet light from hot young stars and distant galaxies from 2003 to 2013. It never looked at most of the Milky Way: bright stars there could have damaged its detectors. The dark band across the middle is where it couldn't look.",
-    credit: "GALEX GR6/7 near-ultraviolet: NASA/Caltech. HEALPix map by CDS; colored here.",
+    credit: "GALEX near-ultraviolet all-sky imaging: NASA/Caltech. HEALPix map by CDS; colored here.",
     links: [{ label: "GALEX at Caltech", href: "https://www.galex.caltech.edu/" }],
   },
   {
@@ -86,16 +86,16 @@ export const SURVEYS = [
   },
   {
     key: "integral", legend: { swatches: [["20–35 keV", "#ff5a46"], ["35–65 keV", "#52d66e"], ["65–100 keV", "#5a90ff"]] }, dial: "INTEGRAL", title: "Feeding black holes", f: keV(45), freqLabel: "20–100 keV",
-    base: [`${CDS_BIS}/ESAC/ESAVO_P_INTEGRAL_color`, `${CDS}/ESAC/ESAVO_P_INTEGRAL_color`, `${ESA}/Integral/color`], ext: "jpg", frame: "equatorial",
+    base: [`${ESA}/Integral/color`, `${CDS}/ESAC/ESAVO_P_INTEGRAL_color`, `${CDS_BIS}/ESAC/ESAVO_P_INTEGRAL_color`], ext: "jpg", frame: "equatorial",
     tones: [keV(27.5), keV(50), keV(82.5)], toneNames: "its three colors, 27.5, 50 and 82.5 keV,",
     body:
       "Hard X-rays come mostly from matter swirling onto black holes and neutron stars. Most of the dots along the Milky Way are pairs where a dead star is pulling gas off a living one. ESA's INTEGRAL observatory, launched in 2002, mapped them for more than two decades.",
-    credit: "INTEGRAL color map: ESA (ESAC). Served by CDS.",
+    credit: "INTEGRAL color map: ESA (ESAC), served by ESASky.",
     links: [{ label: "INTEGRAL at ESA", href: "https://www.esa.int/Science_Exploration/Space_Science/Integral" }],
   },
   {
     key: "fermi", legend: { swatches: [["0.3–1 GeV", "#ff5a46"], ["1–3 GeV", "#52d66e"], ["3–300 GeV", "#5a90ff"]] }, dial: "FERMI", title: "The highest-energy light", f: GeV(1), freqLabel: "0.3–300 GeV",
-    base: [`${CDS}/Fermi/Color`, `${CDS_BIS}/Fermi/Color`, `${ESA}/FermiColor`], ext: "jpg", frame: "equatorial",
+    base: [`${CDS}/Fermi/Color`, `${ESA}/FermiColor`, `${CDS_BIS}/Fermi/Color`], ext: "jpg", frame: "equatorial",
     tones: [GeV(0.55), GeV(1.7), GeV(5.5)], toneNames: "its three colors, 0.55, 1.7 and 5.5 GeV,",
     body:
       "NASA's Fermi telescope, launched in 2008, sees light hundreds of millions of times more energetic than the light your eyes see. The Milky Way glows where cosmic rays slam into gas. The brightest dots are spinning neutron stars like the Vela pulsar; most of the rest are blazars, black holes in distant galaxies firing jets straight at us.",

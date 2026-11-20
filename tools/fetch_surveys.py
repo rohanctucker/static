@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
 """Keep a copy of the survey images with the site.
 
-Above 5 THz, Static shows real all-sky surveys served by the CDS archive in Strasbourg. Without
-this script, every visitor's browser fetches them from CDS. With it, the site serves its own
-copies: faster, works offline, and kinder to a free scientific service if your link takes off.
+Above 5 THz, Static shows real all-sky surveys in HiPS format, from the CDS archive in Strasbourg
+or the copies kept by NASA/IPAC IRSA and ESA's ESASky. Without this script, every visitor's browser
+fetches them from those servers. With it, the site serves its own copies: faster, works when an
+archive is down, and kinder to free scientific services if your link takes off.
 
     python3 tools/fetch_surveys.py
 
 Needs only Python 3 (no packages). It downloads one low-resolution "Allsky" image per survey
-(about 0.2-1 MB each) into data/surveys/ and writes data/surveys/surveys.json, which the site
+(about 0.2-3 MB each) into data/surveys/ and writes data/surveys/surveys.json, which the site
 reads on start. Run it again any time; existing files are kept unless you pass --force.
-
-The night-sky photo (Axel Mellinger's panorama) is copyrighted, all rights reserved, so it is
-never copied: the site always shows it live from CDS, the way other sky viewers do.
 """
 
 import argparse
@@ -39,14 +37,16 @@ SURVEYS = [
      "AllWISE: NASA/JPL-Caltech/UCLA; HEALPix and colors by CDS"),
     ("twomass", [f"{CDS}/2MASS/Color", f"{IRSA}/2MASS/Color", f"{CDS_BIS}/2MASS/Color"], "jpg",
      "2MASS: UMass and IPAC/Caltech, NASA, NSF; HEALPix and colors by CDS"),
-    ("halpha", [f"{CDS}/FinkbeinerHalpha", f"{CDS_BIS}/FinkbeinerHalpha"], "jpg",
+    ("halpha", [f"{CDS}/FinkbeinerHalpha", f"{ESA}/FinkbeinerHa", f"{CDS_BIS}/FinkbeinerHalpha"], "jpg",
      "H-alpha composite: D. Finkbeiner 2003 (WHAM, VTSS, SHASSA); HEALPix by CDS"),
-    ("galex", [f"{CDS}/GALEX/GALEXGR6_7_NUV", f"{CDS_BIS}/GALEX/GALEXGR6_7_NUV"], "png",
-     "GALEX GR6/7 NUV: NASA/Caltech; HEALPix by CDS"),
+    ("gaia", [f"{ESA}/Gaia/dr3/RGB"], "png",
+     "Gaia DR3 colour flux map: ESA/Gaia/DPAC; HiPS by ESASky"),
+    ("galex", [f"{CDS}/GALEX/GALEXGR6_7_NUV", f"{IRSA}/GALEX/GR6-03-2014/AIS-ND", f"{CDS_BIS}/GALEX/GALEXGR6_7_NUV"], "png",
+     "GALEX near-ultraviolet: NASA/Caltech; HEALPix by CDS"),
     ("rosat", [f"{CDS}/RASS", f"{CDS_BIS}/RASS"], "jpg",
      "ROSAT All-Sky Survey: distributed by MPE; HEALPix by CDS"),
-    ("integral", [f"{CDS}/ESAC/ESAVO_P_INTEGRAL_color", f"{ESA}/Integral/color", f"{CDS_BIS}/ESAC/ESAVO_P_INTEGRAL_color"], "jpg",
-     "INTEGRAL: ESA (ESAC); served by CDS"),
+    ("integral", [f"{ESA}/Integral/color", f"{CDS}/ESAC/ESAVO_P_INTEGRAL_color", f"{CDS_BIS}/ESAC/ESAVO_P_INTEGRAL_color"], "jpg",
+     "INTEGRAL: ESA (ESAC); served by ESASky"),
     ("fermi", [f"{CDS}/Fermi/Color", f"{ESA}/FermiColor", f"{CDS_BIS}/Fermi/Color"], "jpg",
      "Fermi LAT: NASA/DOE/Fermi LAT Collaboration; HEALPix and colors by CDS"),
 ]
@@ -104,7 +104,7 @@ def main():
             except Exception as e:  # try the next copy
                 print(f"  {key:9s} {base.split('//')[1].split('/')[0]}: {e}")
         if got is None:
-            print(f"  {key:9s} FAILED: no copy answered, so the site will try CDS live instead")
+            print(f"  {key:9s} FAILED: no copy answered, so the site will load it live instead")
             continue
         with open(dest, "wb") as f:
             f.write(got)
@@ -113,7 +113,7 @@ def main():
         print(f"  {key:9s} {len(got) / 1e6:.2f} MB")
 
     with open(manifest_path, "w") as f:
-        json.dump({"version": 1, "source": "CDS HiPS, Norder3/Allsky", "files": files, "credits": credits}, f, indent=1)
+        json.dump({"version": 1, "source": "HiPS Norder3/Allsky images (CDS, IRSA, ESASky)", "files": files, "credits": credits}, f, indent=1)
     print(f"\n{ok} of {len(SURVEYS)} surveys saved in data/surveys/. Reload the site to use them.")
     return 0 if ok else 1
 

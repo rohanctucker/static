@@ -27,7 +27,7 @@ export const STATIONS = [
     id: "cp1919", freqLabel: "81.5 MHz", kind: "point", f: 81.5, capture: 0.008, priority: 3, dial: "CP 1919", voice: "pulsar",
     title: "The first pulsar",
     body:
-      "In 1967, graduate student Jocelyn Bell Burnell noticed a “bit of scruff” on her chart recorder at 81.5 MHz: a pulse every 1.337 seconds, too regular to be natural. It was a collapsed star spinning like a lighthouse, the first pulsar ever found. A plot of its pulses later became the cover of Joy Division's Unknown Pleasures.",
+      "In 1967, graduate student Jocelyn Bell Burnell noticed a “bit of scruff” on her chart recorder at 81.5 MHz: a pulse every 1.337 seconds, so regular it looked artificial. It was a collapsed star spinning like a lighthouse, the first pulsar ever found. A plot of its pulses later became the cover of Joy Division's Unknown Pleasures.",
     hear: "One pulse every 1.3373 seconds, CP 1919's real period.",
   },
   {
@@ -41,7 +41,7 @@ export const STATIONS = [
     id: "haslam", freqLabel: "408 MHz", kind: "point", f: 408, capture: 0.01, priority: 2, dial: "HASLAM 408", landmark: true,
     title: "The map of the radio sky",
     body:
-      "In the 1970s, astronomers combined surveys from radio telescopes in Germany, England and Australia into the first map of the entire sky at 408 MHz. More than forty years later, it is still a foundation of sky models, including the one drawing this screen.",
+      "In 1982, astronomers combined years of surveys from radio telescopes in Germany, England and Australia into the first map of the entire sky at 408 MHz. More than forty years later, it is still a foundation of sky models, including the one drawing this screen.",
     hear: "Static only. This is a landmark, not a broadcast.",
   },
   {
@@ -50,20 +50,20 @@ export const STATIONS = [
     title: "Hydrogen",
     body:
       "A hydrogen atom can flip the spin of its electron and give off a photon at exactly 1420.4058 MHz. Any one atom does it about once in 11 million years, but the galaxy holds so much hydrogen that the glow is everywhere. Mapping it in the 1950s revealed the Milky Way's spiral arms. In the US no station may transmit between 1400 and 1427 MHz, so astronomers can still hear it.",
-    hear: "The hydrogen line itself, slowed by 22 octaves: 1420.4058 MHz becomes 338.66 Hz.",
+    hear: "The hydrogen line itself, slowed by 22 octaves: 1420.4058 MHz becomes 338.65 Hz.",
   },
   {
     id: "waterhole", freqLabel: "1,420–1,662 MHz", kind: "band", lo: H_LINE, hi: 1662, edge: 0.003, priority: 2, dial: "WATER HOLE", voice: "waterhole",
     title: "The water hole",
     body:
       "Between the hydrogen line and the hydroxyl lines near 1665 MHz lies one of the quietest stretches of the radio sky. In 1971, SETI pioneers nicknamed it the water hole, because H plus OH makes water, and proposed it as the obvious place for civilizations to look for each other.",
-    hear: "Hydrogen at 338.66 Hz and hydroxyl's twin lines at 397.06 and 397.53 Hz (1665 and 1667 MHz, slowed 22 octaves), beating once every 2.1 seconds.",
+    hear: "Hydrogen at 338.65 Hz and hydroxyl's twin lines at 397.06 and 397.53 Hz (1665 and 1667 MHz, slowed 22 octaves), beating once every 2.1 seconds.",
   },
   {
     id: "gps", freqLabel: "1,575.42 MHz", kind: "point", f: 1575.42, capture: 0.0035, priority: 4, dial: "GPS", voice: "gps",
     title: "GPS",
     body:
-      "Every location fix on your phone starts with satellites broadcasting at 1575.42 MHz, right in the middle of the water hole. The signal reaches the ground weaker than the background noise; receivers dig it out by matching a code they already know.",
+      "Every location fix on your phone starts with satellites broadcasting at 1575.42 MHz, inside the water hole. The signal reaches the ground weaker than the background noise; receivers dig it out by matching a code they already know.",
     hear: "The code of GPS satellite 1, slowed 512 times: 1,023 chips repeating every half second.",
   },
   {
@@ -85,7 +85,7 @@ export const STATIONS = [
     title: "Carbon monoxide",
     body:
       "The cold clouds where stars form are mostly hydrogen molecules, which barely glow. Astronomers find them by their carbon monoxide instead, which shines at 115.271 GHz and again at almost exactly two, three and four times that frequency, like the overtones of a plucked string.",
-    hear: "CO's first four lines slowed by 30 octaves: 107.36, 214.71, 322.05 and 429.38 Hz.",
+    hear: "CO's first four lines slowed by 30 octaves: 107.35, 214.71, 322.05 and 429.38 Hz.",
   },
   {
     id: "cmb", freqLabel: "160.2 GHz", kind: "point", f: 160200, capture: 0.03, priority: 4, dial: "BIG BANG", voice: "cmb", special: "cmb",
@@ -181,7 +181,7 @@ export const REGIONS = [
     lo: 2.9e10, hi: 2.418e13, freqLabel: "0.12–100 keV",
     title: "X-rays",
     body:
-      "Light from gas heated to millions of degrees and from matter falling onto neutron stars and black holes. Our atmosphere stops all of it, so X-ray astronomy only began when rockets carried detectors above it, in 1962.",
+      "Light from gas heated to millions of degrees and from matter falling onto neutron stars and black holes. Our atmosphere stops all of it, so the first X-ray source beyond the Sun was found only in 1962, by a detector carried above the air on a rocket.",
   },
   {
     lo: 2.418e13, hi: 2.418e16, freqLabel: "100 keV – 100 MeV",

@@ -1,10 +1,13 @@
 {
  "version": 1,
- "source": "CDS HiPS, Norder3/Allsky",
+ "source": "HiPS Norder3/Allsky images (CDS, IRSA, ESASky)",
  "files": {
   "iras": "iras.jpg",
   "wise": "wise.jpg",
   "twomass": "twomass.jpg",
+  "halpha": "halpha.jpg",
+  "gaia": "gaia.png",
+  "galex": "galex.png",
   "integral": "integral.jpg",
   "fermi": "fermi.jpg"
  },
@@ -12,7 +15,10 @@
   "iras": "IRIS (IRAS reprocessed): Miville-Deschenes & Lagache 2005, NASA/IPAC; HEALPix by CDS",
   "wise": "AllWISE: NASA/JPL-Caltech/UCLA; HEALPix and colors by CDS",
   "twomass": "2MASS: UMass and IPAC/Caltech, NASA, NSF; HEALPix and colors by CDS",
-  "integral": "INTEGRAL: ESA (ESAC); served by CDS",
+  "halpha": "H-alpha composite: D. Finkbeiner 2003 (WHAM, VTSS, SHASSA); HEALPix by CDS",
+  "gaia": "Gaia DR3 colour flux map: ESA/Gaia/DPAC; HiPS by ESASky",
+  "galex": "GALEX near-ultraviolet: NASA/Caltech; HEALPix by CDS",
+  "integral": "INTEGRAL: ESA (ESAC); served by ESASky",
   "fermi": "Fermi LAT: NASA/DOE/Fermi LAT Collaboration; HEALPix and colors by CDS"
  }
 }
