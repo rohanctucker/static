@@ -2,7 +2,7 @@
 
 A portable radio that tunes the real sky, and a shelf of tapes recorded on other worlds.
 
-**Live:** https://rohantucker.github.io/static/
+**Live:** https://rohanctucker.github.io/static/
 
 ![Static, with a tape from Mars in the player](assets/og.jpg)
 
